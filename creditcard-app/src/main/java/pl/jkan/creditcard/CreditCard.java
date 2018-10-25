@@ -5,7 +5,7 @@ class CreditCard {
      
      public boolean blockade = false;
      
-     public void assignLimi(double limit){
+     public void assignLimit(double limit){
          
      }
     
@@ -18,7 +18,7 @@ class CreditCard {
         this.blockade=true;
     }
     
-    public boolean isBloked{
+    public boolean isBlocked(){
         return this.blockade;
     }
 }
