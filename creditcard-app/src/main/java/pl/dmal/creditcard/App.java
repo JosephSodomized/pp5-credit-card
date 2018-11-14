@@ -1,4 +1,4 @@
-package pl.jkan.creditcard;
+package pl.dmal.creditcard;
 
 /**
  * Hello world!
