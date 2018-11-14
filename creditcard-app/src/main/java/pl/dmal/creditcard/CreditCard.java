@@ -37,4 +37,15 @@ class CreditCard {
     private boolean isNotEnoughMoney(BigDecimal money) {
         return money.compareTo(balance) > 0;
     }
+
+    public void repay(BigDecimal money){
+        if (money.compareTo(BigDecimal.ZERO) < 0) {
+            throw new CantRepayMinusAmountException();
+        }
+        balance = balance.add(money);
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
 }
