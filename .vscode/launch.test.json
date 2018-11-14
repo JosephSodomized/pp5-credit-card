@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "creditcard-app",
+                "projectName": "creditcard-app",
+                "workingDirectory": "c:\\Users\\Malcharczyk\\git\\pp5-credit-card\\creditcard-app",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "creditcard-app",
+                "projectName": "creditcard-app",
+                "workingDirectory": "c:\\Users\\Malcharczyk\\git\\pp5-credit-card\\creditcard-app",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
