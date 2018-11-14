@@ -13,9 +13,13 @@ class CreditCard {
         this.balance = money;
      }
     
-    
     public BigDecimal getLimit() {
         return limit;
+  
+    
+    public double getLimit() {
+        return 2000;
+
     }
     
     public void block(){
@@ -48,4 +52,5 @@ class CreditCard {
     public BigDecimal getBalance() {
         return balance;
     }
+
 }
