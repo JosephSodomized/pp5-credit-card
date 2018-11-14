@@ -15,12 +15,8 @@ class CreditCard {
     
     public BigDecimal getLimit() {
         return limit;
-  
-    
-    public double getLimit() {
-        return 2000;
-
     }
+    
     
     public void block(){
         this.blockade=true;
