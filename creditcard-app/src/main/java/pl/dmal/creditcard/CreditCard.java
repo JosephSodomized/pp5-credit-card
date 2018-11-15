@@ -1,39 +1,68 @@
 package pl.dmal.creditcard;
+
 import java.math.BigDecimal;
 
 class CreditCard {
-
+    
+    private boolean blocked = false;
     private BigDecimal limit;
-     
-     public boolean blockade = false;
-     private BigDecimal balance = BigDecimal.ZERO;
+    private BigDecimal balance = BigDecimal.ZERO;
+    private String id;
 
-     public void assignLimit(BigDecimal money){
+    public CreditCard(){
+        this.id = "Random string";
+    }
+
+    public CreditCard(String id){
+        this.id = id;
+    }
+
+    public String getId(){
+        return id;
+    }
+
+    public void assignLimit(BigDecimal money) {
+        if (isLimitAlreadyAsigned()) {
+            throw new LimitAlreadyAssignedException();
+        }
+
+        if (isLimitBelowOrEquals0(money)) {
+            throw new InsufficientCreditLimitException();
+        }
+
         this.limit = money;
         this.balance = money;
-     }
-    
+    }
+
+    private boolean isLimitBelowOrEquals0(BigDecimal money) {
+        return money.compareTo(BigDecimal.ZERO) <= 0;
+    }
+
+    private boolean isLimitAlreadyAsigned() {
+        return limit != null;
+    }
+
     public BigDecimal getLimit() {
         return limit;
-  
-    
-    public double getLimit() {
-        return 2000;
-
     }
     
-    public void block(){
-        this.blockade=true;
+    public void block() {
+        this.blocked = true;
     }
     
-    public boolean isBlocked(){
-        return this.blockade;
+    public boolean isBlocked() {
+        return this.blocked;
     }
 
     public void withdraw(BigDecimal money) {
+        if (isWithdrawOverTheLimit(money))
+            throw new NotEnoughMoneyException();
 
         if (isNotEnoughMoney(money))
-        throw new WithdrawWhenOverTheLimit();
+            throw new NotEnoughMoneyException();
+
+        if (isBlocked())
+            throw new TransactionOnBlockedCardException();
 
         balance = balance.subtract(money);
     }
@@ -42,9 +71,13 @@ class CreditCard {
         return money.compareTo(balance) > 0;
     }
 
-    public void repay(BigDecimal money){
+    private boolean isWithdrawOverTheLimit(BigDecimal money) {
+        return money.compareTo(limit) > 0;
+    }
+
+    public void repay(BigDecimal money) {
         if (money.compareTo(BigDecimal.ZERO) < 0) {
-            throw new CantRepayMinusAmountException();
+            throw new CantRepayNegativeAmountException();
         }
         balance = balance.add(money);
     }
@@ -52,5 +85,4 @@ class CreditCard {
     public BigDecimal getBalance() {
         return balance;
     }
-
 }
